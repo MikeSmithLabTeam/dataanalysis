@@ -16,6 +16,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/MikeSmithLabTeam/DataAnalysis/issues"
     },
     license='MIT',
-    packages=['fitting','plottling','signal_toolbox'],
+    packages=['DataAnalysis'],
     install_requires=['numpy','pandas','matplotlib','math','scipy','https://github.com/MikeSmithLabTeam/particletracker/tarball/repo/master#egg=package-1.0'],
 )
