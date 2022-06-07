@@ -86,7 +86,7 @@ def get_pts(ax, pts_handle, type='Lasso',enter_closes=False):
     
     ax  : Matplotlib axes
     fig : Matplotlib figure
-    pts_handle  : handle to some plotted data
+    pts_handle  : handle to some plotted data. Must be a collection. ax.scatter works but ax.plot won't
     
     Example Usage:
     #Create random data
@@ -98,6 +98,8 @@ def get_pts(ax, pts_handle, type='Lasso',enter_closes=False):
     pts = ax.scatter(data[:, 0], data[:, 1], s=80)
     #Launch interactive data collection
     ind, values = get_pts(ax, pts,type='Ellipse',enter_closes=True)    
+    
+    
     """
     selector = SelectPts(ax, pts_handle, type=type, enter_closes=enter_closes)
     fig = ax.get_figure()
