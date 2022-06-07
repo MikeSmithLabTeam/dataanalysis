@@ -25,7 +25,7 @@ class SelectPts:
     
     """
 
-    def __init__(self, ax, fig, collection, alpha_other=0.3, type='Lasso',enter_closes=False):
+    def __init__(self, ax, collection, alpha_other=0.3, type='Lasso',enter_closes=False):
         self.canvas = ax.figure.canvas
         self.collection = collection
         self.enter_closes=enter_closes
@@ -79,7 +79,7 @@ class SelectPts:
             plt.close()
 
 
-def get_pts(ax, fig, pts_handle, type='Lasso',enter_closes=False):
+def get_pts(ax, pts_handle, type='Lasso',enter_closes=False):
     """
     Call this function on a matplotlib axes to enable interactive
     selection of data.
@@ -97,9 +97,10 @@ def get_pts(ax, fig, pts_handle, type='Lasso',enter_closes=False):
     fig, ax = plt.subplots(subplot_kw=subplot_kw)
     pts = ax.scatter(data[:, 0], data[:, 1], s=80)
     #Launch interactive data collection
-    ind, values = get_pts(ax, fig, pts,type='Ellipse',enter_closes=True)    
+    ind, values = get_pts(ax, pts,type='Ellipse',enter_closes=True)    
     """
-    selector = SelectPts(ax, fig, pts_handle, type=type, enter_closes=enter_closes)
+    selector = SelectPts(ax, pts_handle, type=type, enter_closes=enter_closes)
+    fig = ax.get_figure()
     def accept(event):
         if event.key == "enter":           
             pt_indices = selector.ind_store
