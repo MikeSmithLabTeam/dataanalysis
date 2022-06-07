@@ -77,6 +77,12 @@ class SelectPts:
         self.canvas.draw_idle()
         if self.enter_closes:
             plt.close()
+    
+    def reset(self):
+        delattr(self, 'ind_store')
+        self.fc[:, -1] = self.alpha_orig
+        self.collection.set_facecolors(self.fc)
+        self.canvas.draw_idle()
 
 
 def get_pts(ax, pts_handle, type='Lasso',enter_closes=False):
@@ -110,6 +116,9 @@ def get_pts(ax, pts_handle, type='Lasso',enter_closes=False):
             selector.disconnect()
             ax.set_title("")
             fig.canvas.draw()
+        elif event.key == "x":
+            selector.reset()
+            fig.canvas.mpl_connect("key_press_event", accept)
 
     fig.canvas.mpl_connect("key_press_event", accept)
     ax.set_title("Press enter to accept selected points.")
